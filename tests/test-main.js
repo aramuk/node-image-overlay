@@ -20,7 +20,7 @@ describe('ImageOverlay', function () {
 
     return imageOverlay.overlayImage(srcImgPath, ovrImgPath, outImgPath)
     .then(function(data) {
-      expect(data.equals(outImgPath))
+      expect(data === outImgPath)
       expect(imageOverlay.checkFileExists(outImgPath))
       fs.unlink(outImgPath, function(err) {
         if (err) {
@@ -38,7 +38,7 @@ describe('ImageOverlay', function () {
 
     return imageOverlay.overlayImage(srcImgPath, ovrImgPath, outImgPath, 10, 10, 30, 60)
     .then(function(data) {
-      expect(data.equals(outImgPath))
+      expect(data === outImgPath)
       expect(imageOverlay.checkFileExists(outImgPath))
       fs.unlink(outImgPath, function(err) {
         if (err) {
