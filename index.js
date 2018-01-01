@@ -1,6 +1,7 @@
 var fs   = require("fs");
 var util = require("util");
 var exec = require("child_process").exec;
+var path = require("path");
 var tmp = require("tmp");
 tmp.setGracefulCleanup();
 
@@ -29,14 +30,15 @@ function overlayImage(origImagePath, imageToOverlayPath, newImagePath,
   var p = new Promise(function(resolve, reject) {
     const imgResizeCmd = 'convert -density 1200 -background none -resize x%d^ -gravity center -extent %dx%d %s %s\n';
     const combineCmd = 'convert %s %s -geometry +%d+%d -composite %s\n';
-    var tmpFile = tmp.fileSync();
+    var tmpDir = tmp.dirSync();
+    var tmpFileName = tmpDir.name + '/' + path.basename(imageToOverlayPath)
     var cmd = '';
     if (overlayW != 0 || overlayH != 0) {
-      cmd += util.format(imgResizeCmd, overlayH, overlayW, imageToOverlayPath, tmpFile.name)
+      cmd += util.format(imgResizeCmd, overlayH, overlayH, overlayW, imageToOverlayPath, tmpFileName)
     } else {
-      cmd += util.format('cp %s %s\n', imageToOverlayPath, tmpFile.name)
+      cmd += util.format('cp %s %s\n', imageToOverlayPath, tmpFileName)
     }
-    cmd += util.format(combineCmd, origImagePath, tmpFile.name, overlayX, overlayY, newImagePath)
+    cmd += util.format(combineCmd, origImagePath, tmpFileName, overlayX, overlayY, newImagePath)
     executeCmd(cmd)
     .then(function(result) {
       resolve(newImagePath)
