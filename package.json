@@ -24,5 +24,19 @@
   "bugs": {
     "url": "https://github.com/aramuk/node-image-overlay/issues"
   },
-  "homepage": "https://github.com/aramuk/node-image-overlay#readme"
+  "dependencies": {
+    "chai": "^1.9.2",
+    "es6-promise": "^2.0.0",
+    "exec": "^0.2.1",
+    "flat": "^4.0.0",
+    "tmp": "^0.0.33",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  },
+  "homepage": "https://github.com/aramuk/node-image-overlay#readme",
+  "scripts": {
+    "test": "mocha tests/*"
+  }
 }

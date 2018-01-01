@@ -27,21 +27,17 @@ function overlayImage(origImagePath, imageToOverlayPath, newImagePath,
     overlayY = 0;
   }
   var p = new Promise(function(resolve, reject) {
-    var script = '';
     const imgResizeCmd = 'convert -density 1200 -background none -resize x%d^ -gravity center -extent %dx%d %s %s\n';
     const combineCmd = 'convert %s %s -geometry +%d+%d -composite %s\n';
     var tmpFile = tmp.fileSync();
     var cmd = '';
     if (overlayW != 0 || overlayH != 0) {
-      cmd = util.format(imgResizeCmd, overlayH, overlayW, imageToOverlayPath, tmpFile.name)
+      cmd += util.format(imgResizeCmd, overlayH, overlayW, imageToOverlayPath, tmpFile.name)
     } else {
-      cmd = util.format('cp %s %s', imageToOverlayPath, tmpFile.name)
+      cmd += util.format('cp %s %s\n', imageToOverlayPath, tmpFile.name)
     }
+    cmd += util.format(combineCmd, origImagePath, tmpFile.name, overlayX, overlayY, newImagePath)
     executeCmd(cmd)
-    .then(function(result) {
-      cmd = util.format(combineCmd, origImagePath, tmpFile.name, overlayX, overlayY, newImagePath)
-      executeCmd(cmd)
-    })
     .then(function(result) {
       resolve(newImagePath)
     },
@@ -57,15 +53,16 @@ function validateLoad() {
 }
 
 function executeCmd(command) {
+  console.log("Executing command " + command)
 	var p = new Promise(function(resolve, reject) {
-    if (command != '') {
-		  exec(command, (err, stdout, stderr) => {
-			  if (err) {
-				  reject(err);
-			  }
-		  })
-      resolve(command);
-    }
+	  exec(command, (err, stdout, stderr) => {
+  		if (err) {
+        console.log("Rejecting stdout: " + stdout + " stderr: " + stderr)
+		    reject(err);
+      } else {
+        resolve(command);
+      }
+    })
 	})
 	return p;
 }
@@ -79,4 +76,4 @@ function checkFileExists(filePath) {
   })
 }
 
-module.exports = {overlayImage, validateLoad};
+module.exports = {overlayImage, validateLoad, checkFileExists};
