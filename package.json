@@ -36,8 +36,5 @@
   "devDependencies": {
     "mocha": "^2.3.4"
   },
-  "homepage": "https://github.com/aramuk/node-image-overlay#readme",
-  "scripts": {
-    "test": "mocha tests/*"
-  }
+  "homepage": "https://github.com/aramuk/node-image-overlay#readme"
 }

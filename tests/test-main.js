@@ -30,6 +30,7 @@ describe('ImageOverlay', function () {
     })
   })
 
+/*
   it("Should overlay resized image at 10, 10", function() {
     srcImgPath = 'tests/data/tree.jpg'
     ovrImgPath = 'tests/data/holiday.svg'
@@ -47,5 +48,6 @@ describe('ImageOverlay', function () {
       })
     })
   })
+*/
 
 })
