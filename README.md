@@ -3,7 +3,6 @@
 A node module that utilizes the ImageMagick command line tool to overlay one image on another.
 
 ## Usage
----
 [ImageMagick](http://www.imagemagick.org/script/index.php) must be installed for the module to run.
 
 Creating an instance of **image-overlayer**
@@ -15,8 +14,8 @@ overlayer.overlayImage("./tests/data/tree.jpg","./tests/data/holiday.svg","./tes
 ```
 
 ## API
----
-#### `overlayImage(origImagePath, imageToOverlayPath, newImagePath, overlayX, overlayY, overlayW, overlayH)`
+
+###### `overlayImage(origImagePath, imageToOverlayPath, newImagePath, overlayX, overlayY, overlayW, overlayH)`
 
 Parameters
 * `origImagePath`(`string`) - path to image to serve as base
