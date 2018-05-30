@@ -12,7 +12,7 @@ Creating an instance of **image-overlayer**
 
 ## API
 
-### `overlayImage(origImagePath, imageToOverlayPath, newImagePath, overlayX, overlayY, overlayW, overlayH)`
+###### `overlayImage(origImagePath, imageToOverlayPath, newImagePath, overlayX, overlayY, overlayW, overlayH)`
 Parameters
 * `origImagePath`(`string`) - path to image to serve as base
 * `imageToOverlayPath`(`string`) - path to image to be overlayed
