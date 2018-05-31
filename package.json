@@ -10,15 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/aramuk/node-image-overlay.git"
   },
-  "keywords": [
-    "[\"combine",
-    "images\"",
-    "\"overlay",
-    "images\"",
-    "\"merge",
-    "images\"",
-    "\"images\"]"
-  ],
+"keywords": [
+  "combine images",
+  "overlay images",
+  "merge images",
+  "images"
+],
   "author": "Aditesh Kumar <aramuk5@gmail.com>",
   "license": "MIT",
   "bugs": {
